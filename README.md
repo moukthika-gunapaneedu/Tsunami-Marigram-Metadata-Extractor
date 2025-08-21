@@ -45,7 +45,8 @@ python extract_metadata.py --input ./data/marigrams/ --output ./output/metadata.
 ```bash
 FILE_NAME, COUNTRY, STATE, LOCATION, LOCATION_SHORT, REGION_CODE,
 START_RECORD, END_RECORD, TSEVENT_ID, TSRUNUP_ID, RECORDED_DATE,
-LATITUDE, LONGITUDE, IMAGES, SCALE, MICROFILM_NAME, COMMENTS```
+LATITUDE, LONGITUDE, IMAGES, SCALE, MICROFILM_NAME, COMMENTS
+```
 
 ## Regex Patterns
 The extractor uses multiple regex strategies to capture different latitude/longitude formats:
@@ -56,9 +57,20 @@ The extractor uses multiple regex strategies to capture different latitude/longi
 
 - DMS format → 19°43'N 155°05'W
 
+## Tips & Troubleshooting
+
+- Tesseract not found: ensure it’s installed and on PATH (see installation notes).
+
+- OCR misses/streaking: the script already tries several binarizations; you can add deskew or morphology in the preprocessing function if needed.
+
+- Geocoding ambiguous: add the place to locations.txt, or specify more context in the image header (COUNTRY/STATE/LOCATION). Nominatim is rate-limited; this script uses ~1 req/sec.
+
+- Region code empty: ensure a valid IOC code (e.g., [85]) is present in the header or provide an explicit CSV mapping.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request to suggest improvements.
+
 
 
 
