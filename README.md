@@ -40,26 +40,12 @@ pip install -r requirements.txt
 python extract_metadata.py --input ./data/marigrams/ --output ./output/metadata.csv
 ```
 
-## Pipeline (Mermaid Diagram)
-```mermaid
-flowchart LR
-    A[Marigram TIFF/PNG/JPG Images] --> B[Preprocessing\n(Otsu / Inverted / Adaptive / CLAHE / Blur)]
-    B --> C[OCR (Tesseract)]
-    C --> D[Text Cleaning & Parsing\nCOUNTRY / STATE / LOCATION / DATE / SCALE]
-    D --> E{Country/State/Location in Lists?}
-    E -- Yes --> F[Use Parsed Names]
-    E -- No  --> F
-    F --> G[Online Geocoding (Nominatim)\nLOCATION, STATE, COUNTRY → LAT/LON]
-    D --> H[IOC Region Code Check\n(IDs 30–89 only)]
-    G --> I[Normalize Fields\nDate → YYYY/MM/DD\nScale → 1:NN\nLat/Lon → decimals]
-    H --> I
-    I --> J[Append Row to Excel/CSV]
-```
+## Output Columns
 
-## Example Output
-FILE_NAME	     COUNTRY	   STATE	 LOCATION	LATITUDE	LONGITUDE	 DATE	        COMMENTS
-marigram1.tif	  JAPAN	     HONSHU	  TOKYO	   35.68	   139.76	 1960-05-23	 Good tide gauge reading
-marigram2.tif 	USA	       HAWAII	  HILO	   19.73	  -155.08	 1964-03-28	 Clear event trace
+```bash
+FILE_NAME, COUNTRY, STATE, LOCATION, LOCATION_SHORT, REGION_CODE,
+START_RECORD, END_RECORD, TSEVENT_ID, TSRUNUP_ID, RECORDED_DATE,
+LATITUDE, LONGITUDE, IMAGES, SCALE, MICROFILM_NAME, COMMENTS```
 
 ## Regex Patterns
 The extractor uses multiple regex strategies to capture different latitude/longitude formats:
