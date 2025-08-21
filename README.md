@@ -53,7 +53,8 @@ flowchart LR
     D --> H[IOC Region Code Check\n(IDs 30–89 only)]
     G --> I[Normalize Fields\nDate → YYYY/MM/DD\nScale → 1:NN\nLat/Lon → decimals]
     H --> I
-    I --> J[Append Row to Excel/CSV]```
+    I --> J[Append Row to Excel/CSV]
+```
 
 ## Example Output
 FILE_NAME	     COUNTRY	   STATE	 LOCATION	LATITUDE	LONGITUDE	 DATE	        COMMENTS
