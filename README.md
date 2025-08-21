@@ -26,4 +26,5 @@ pip install -r requirements.txt
 
 
 # Usage
-python extract_metadata.py --input ./data/marigrams/ --output ./output/metadata.csv
+python extract_metadata.py --input ./data/marigrams/ --output ./output/metadata.csv '''
+
